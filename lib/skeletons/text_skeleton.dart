@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
-import 'package:skeletons/skeleton_bar.dart';
+
+import 'skeleton_bar.dart';
 
 class StandardTextSkeleton extends StatelessWidget {
   final Widget? text;

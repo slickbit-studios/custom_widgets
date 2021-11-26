@@ -1,5 +1,8 @@
-name: skeletons
-description: A Flutter library for showing skeletons while loading.
+name: custom_widgets
+description: A Flutter library with useful custom widgets.
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
 version: 0.0.1
 homepage: www.slickbit.de
 
@@ -10,6 +13,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  custom_services:
+    path: ../custom_services
 
 dev_dependencies:
   flutter_test:
