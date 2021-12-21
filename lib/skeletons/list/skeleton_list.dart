@@ -80,7 +80,7 @@ class _SkeletonListState<T> extends State<SkeletonList<T>> {
   }
 
   Future<void> _reload() async {
-    widget.controller.reload();
+    await widget.controller.reload();
     await Future.delayed(const Duration(seconds: 1)); // for better animation
   }
 }

@@ -27,14 +27,16 @@ class ListStreamController<T> {
     new one or just adds if no equal element exists
    */
   void addOrReplace(T object) {
-    if (_objects == null) {
-      _objects = [object];
-    } else {
-      int index = _objects!.indexOf(object);
-      _objects!.removeAt(index);
-      _objects!.insert(index, object);
+    if (_filter(object)) {
+      if (_objects == null) {
+        _objects = [object];
+      } else {
+        int index = _objects!.indexOf(object);
+        _objects!.removeAt(index);
+        _objects!.insert(index, object);
+      }
+      _controller.add(_objects!);
     }
-    _controller.add(_objects!);
   }
 
   void remove(T object) {
@@ -44,26 +46,38 @@ class ListStreamController<T> {
     }
   }
 
-  void reload() {
-    _reloadFunction().then(replace).catchError(_onError);
+  Future<void> reload() async {
+    await _reloadFunction().then(replace).catchError(_onError);
   }
 
   void replace(List<T> objects) {
-    _objects = [];
-
-    // apply filters
-    for (var element in objects) {
-      try {
-        _filters.firstWhere((filter) => !filter.allows(element));
-      } catch (_) {
-        _objects!.add(element); // all filters allow the element
-      }
-    }
-
+    _objects = _filterList(objects);
     _controller.add(_objects!);
   }
 
   void _onError(var error) {
     _controller.addError(error);
+  }
+
+  bool _filter(T element) {
+    try {
+      _filters.firstWhere((filter) => !filter.allows(element));
+    } catch (_) {
+      return true; // all filters allow the element
+    }
+    return false;
+  }
+
+  List<T> _filterList(List<T> list) {
+    List<T> filtered = [];
+
+    // apply filters
+    for (var element in list) {
+      if (_filter(element)) {
+        filtered.add(element);
+      }
+    }
+
+    return filtered;
   }
 }
