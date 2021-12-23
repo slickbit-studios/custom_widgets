@@ -1,23 +1,24 @@
+import 'package:custom_widgets/input/validator.dart';
 import 'package:flutter/material.dart';
 
-typedef Validator = String? Function(String?);
+import 'dimensions.dart';
 
 class DialogTextField extends StatelessWidget {
   final bool editable;
   final String label;
-  final String? unit;
   final String? hint;
   final TextEditingController controller;
-  final Validator? validator;
+  final Validator<String>? validator;
+  final String? unit;
 
   const DialogTextField({
     Key? key,
     required this.editable,
     required this.label,
+    this.hint,
     required this.controller,
     this.validator,
     this.unit,
-    this.hint,
   }) : super(key: key);
 
   @override
@@ -26,7 +27,7 @@ class DialogTextField extends StatelessWidget {
       margin: EdgeInsets.zero,
       shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
       child: SizedBox(
-        height: 48,
+        height: inputHeight,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Row(
@@ -43,7 +44,7 @@ class DialogTextField extends StatelessWidget {
               ),
               if (unit != null)
                 Padding(
-                  padding: const EdgeInsets.only(left: 4),
+                  padding: const EdgeInsets.only(left: unitSpace),
                   child: Text(unit!),
                 )
             ],
@@ -56,28 +57,26 @@ class DialogTextField extends StatelessWidget {
 
 class _ToggleEditTextField extends StatelessWidget {
   final bool editable;
+  final String? hint;
   final TextEditingController controller;
   final Validator? validator;
-  final String? hint;
 
   const _ToggleEditTextField({
     Key? key,
     required this.editable,
+    this.hint,
     required this.controller,
     this.validator,
-    this.hint,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     if (editable) {
       return TextFormField(
-        decoration: InputDecoration.collapsed(
-          hintText: hint,
-        ),
+        decoration: InputDecoration.collapsed(hintText: hint),
         textAlign: TextAlign.end,
         controller: controller,
-        validator: validator,
+        validator: validator?.validate,
       );
     } else {
       return Text(
