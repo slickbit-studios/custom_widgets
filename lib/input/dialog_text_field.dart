@@ -33,14 +33,16 @@ class DialogTextField extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Expanded(flex: 1, child: Text(label)),
+              Text(label),
+              SizedBox(width: 12),
               Expanded(
                 flex: 1,
                 child: _ToggleEditTextField(
-                    editable: editable,
-                    controller: controller,
-                    validator: validator,
-                    hint: hint),
+                  editable: editable,
+                  controller: controller,
+                  validator: validator,
+                  hint: hint,
+                ),
               ),
               if (unit != null)
                 Padding(
@@ -72,17 +74,16 @@ class _ToggleEditTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (editable) {
-      return TextFormField(
-        decoration: InputDecoration.collapsed(hintText: hint),
-        textAlign: TextAlign.end,
-        controller: controller,
-        validator: validator?.validate,
+      return Directionality(
+        textDirection: TextDirection.rtl,
+        child: TextFormField(
+          decoration: InputDecoration.collapsed(hintText: hint),
+          controller: controller,
+          validator: validator?.validate,
+        ),
       );
     } else {
-      return Text(
-        controller.text,
-        textAlign: TextAlign.right,
-      );
+      return Text(controller.text, textAlign: TextAlign.right);
     }
   }
 }

@@ -75,7 +75,7 @@ class _ToggleEditDropdownField<T> extends StatelessWidget {
     required this.editable,
     this.value,
     this.onChanged,
-    this.items = const [],
+    required this.items,
     this.validator,
     this.hint,
   }) : super(key: key);
