@@ -42,16 +42,16 @@ class ListStreamController<T> {
     new one or just adds if no equal element exists
    */
   void addOrReplace(T object) {
-    if (_filter(object)) {
-      if (_objects == null) {
-        _objects = [object];
-      } else {
-        int index = _objects!.indexOf(object);
+    if (_objects == null) {
+      _objects = [object];
+    } else {
+      int index = _objects!.indexOf(object);
+      if (index != -1) {
         _objects!.removeAt(index);
-        _objects!.insert(index, object);
       }
-      _broadcast();
+      _objects!.add(object);
     }
+    _broadcast();
   }
 
   void remove(T object) {

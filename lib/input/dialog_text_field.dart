@@ -8,6 +8,7 @@ class DialogTextField extends StatelessWidget {
   final String label;
   final String? hint;
   final TextEditingController controller;
+  final TextInputType? keyboardType;
   final Validator<String>? validator;
   final String? unit;
 
@@ -17,6 +18,7 @@ class DialogTextField extends StatelessWidget {
     required this.label,
     this.hint,
     required this.controller,
+    this.keyboardType,
     this.validator,
     this.unit,
   }) : super(key: key);
@@ -61,6 +63,7 @@ class _ToggleEditTextField extends StatelessWidget {
   final bool editable;
   final String? hint;
   final TextEditingController controller;
+  final TextInputType? keyboardType;
   final Validator? validator;
 
   const _ToggleEditTextField({
@@ -68,6 +71,7 @@ class _ToggleEditTextField extends StatelessWidget {
     required this.editable,
     this.hint,
     required this.controller,
+    this.keyboardType,
     this.validator,
   }) : super(key: key);
 
@@ -80,6 +84,7 @@ class _ToggleEditTextField extends StatelessWidget {
           decoration: InputDecoration.collapsed(hintText: hint),
           controller: controller,
           validator: validator?.validate,
+          keyboardType: keyboardType,
         ),
       );
     } else {
