@@ -104,16 +104,18 @@ class ListStreamController<T> {
 
   List<T> _sortList(List<T> list) {
     List<T> sortedList = List.of(list);
-    for (int i = 0; i < sortedList.length - 2; i++) {
-      for (var s in _sorts) {
-        if (s.isSmaller(sortedList[i], sortedList[i])) {
-          break; // next sorts can be skipped
-        } else if (s.isGreater(sortedList[i], sortedList[i])) {
-          // swap positions
-          T save = sortedList[i];
-          sortedList[i] = sortedList[i + 1];
-          sortedList[i + 1] = save;
-          break; // next sorts can be skipped
+    for (int i = sortedList.length - 1; i > 0; i--) {
+      for (int j = 0; j < i; j++) {
+        for (var s in _sorts) {
+          if (s.isSmaller(sortedList[j], sortedList[j + 1])) {
+            break; // next sorts can be skipped
+          } else if (s.isGreater(sortedList[j], sortedList[j + 1])) {
+            // swap positions
+            T save = sortedList[j];
+            sortedList[j] = sortedList[j + 1];
+            sortedList[j + 1] = save;
+            break; // next sorts can be skipped
+          }
         }
       }
     }

@@ -42,6 +42,7 @@ class DialogTextField extends StatelessWidget {
                 child: _ToggleEditTextField(
                   editable: editable,
                   controller: controller,
+                  keyboardType: keyboardType,
                   validator: validator,
                   hint: hint,
                 ),

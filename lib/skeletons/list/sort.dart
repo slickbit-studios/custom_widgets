@@ -1,5 +1,3 @@
-import 'package:flutter/widgets.dart';
-
 abstract class Sort<T> {
   bool ascending;
 
@@ -16,16 +14,4 @@ abstract class Sort<T> {
       (compareTo(first, second) < 0 && !ascending);
 
   void invert() => ascending = !ascending;
-}
-
-class SortFactory<T> {
-  final String Function(BuildContext context) titleBuilder;
-  final Future<Sort<T>?> Function(BuildContext context)? sortBuilder;
-  final dynamic type;
-
-  SortFactory({
-    required this.titleBuilder,
-    this.sortBuilder,
-    required this.type,
-  });
 }
