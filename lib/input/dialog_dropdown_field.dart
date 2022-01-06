@@ -87,7 +87,7 @@ class _ToggleEditDropdownField<T> extends StatelessWidget {
       value: value,
       onChanged: editable ? onChanged : null,
       items: items,
-      validator: validator?.validate,
+      validator: (value) => validator?.validate(context, value),
     );
   }
 }

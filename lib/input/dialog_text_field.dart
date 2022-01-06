@@ -84,7 +84,7 @@ class _ToggleEditTextField extends StatelessWidget {
         child: TextFormField(
           decoration: InputDecoration.collapsed(hintText: hint),
           controller: controller,
-          validator: validator?.validate,
+          validator: (value) => validator?.validate(context, value),
           keyboardType: keyboardType,
         ),
       );
