@@ -1,17 +1,21 @@
-import 'package:custom_services/services/dialogs/dialogs.dart';
+import 'package:custom_widgets/pop/prevent_pop.dart';
 import 'package:flutter/material.dart';
 
 bool _instanceOpen = false;
 
-Future<T> loadWrap<T>(Future<T> Function() work, DialogService dialogs) async {
+Future<T> loadWrap<T>({
+  required BuildContext context,
+  required Future<T> Function() work,
+}) async {
   // Only one load dialog at a time is allowed to be opened, otherwise
   // results cannot be handled properly
   assert(!_instanceOpen);
 
   _instanceOpen = true;
-  var result = await dialogs.showDialog(
-    builder: () => _Load(work: work),
-    barrierDismissable: false,
+  var result = await showDialog(
+    context: context,
+    builder: (context) => _Load(work: work),
+    barrierDismissible: false,
   );
   _instanceOpen = false;
 
@@ -68,6 +72,6 @@ class _LoadState extends State<_Load> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: CircularProgressIndicator());
+    return PreventPop(child: Center(child: CircularProgressIndicator()));
   }
 }

@@ -7,14 +7,12 @@ version: 0.0.1
 homepage: www.slickbit.de
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
+  sdk: ">=2.15.0 <3.0.0"
   flutter: ">=1.17.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  custom_services:
-    path: ../custom_services
 
 dev_dependencies:
   flutter_test:
