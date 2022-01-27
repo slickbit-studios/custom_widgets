@@ -14,7 +14,7 @@ class DialogTextField extends StatelessWidget {
 
   const DialogTextField({
     Key? key,
-    required this.editable,
+    this.editable = true,
     required this.label,
     this.hint,
     required this.controller,

@@ -40,10 +40,12 @@ class _SkeletonListState<T> extends State<SkeletonList<T>> {
         if (snapshot.hasData) {
           List<T> objects = snapshot.data!;
           if (objects.isNotEmpty) {
-            child = ListView.builder(
-              itemBuilder: (context, index) =>
-                  widget.cardBuilder(objects[index]),
-              itemCount: objects.length,
+            child = ShimmerProvider(
+              child: ListView.builder(
+                itemBuilder: (context, index) =>
+                    widget.cardBuilder(objects[index]),
+                itemCount: objects.length,
+              ),
             );
           } else {
             // wrap in scrollview to enable refresh indicator
