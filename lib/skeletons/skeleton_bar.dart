@@ -17,7 +17,7 @@ class BarSkeleton extends StatelessWidget {
         height: height,
         decoration: BoxDecoration(
           color: Colors.black,
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(8),
         ),
       ),
     );

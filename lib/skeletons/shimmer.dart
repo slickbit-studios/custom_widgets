@@ -37,17 +37,21 @@ class _ShimmerState extends State<Shimmer> {
     }
     final shimmerSize = shimmer.size;
     final gradient = shimmer.gradient;
-    final offsetWithinShimmer = shimmer.getDescendantOffset(
-      descendant: context.findRenderObject() as RenderBox,
-    );
+    final renderObject = context.findRenderObject();
+    Offset? offsetWithinShimmer;
+    if (renderObject != null && renderObject is RenderBox) {
+      offsetWithinShimmer = shimmer.getDescendantOffset(
+        descendant: renderObject,
+      );
+    }
 
     return ShaderMask(
       blendMode: BlendMode.srcATop,
       shaderCallback: (bounds) {
         return gradient.createShader(
           Rect.fromLTWH(
-            -offsetWithinShimmer.dx,
-            -offsetWithinShimmer.dy,
+            -(offsetWithinShimmer?.dx ?? 0),
+            -(offsetWithinShimmer?.dy ?? 0),
             shimmerSize.width,
             shimmerSize.height,
           ),

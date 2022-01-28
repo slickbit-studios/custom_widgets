@@ -1,6 +1,7 @@
 library custom_widgets;
 
-export 'skeletons/list/skeleton_list.dart';
-export 'skeletons/shimmer.dart';
-export 'skeletons/skeleton_bar.dart';
-export 'skeletons/text_skeleton.dart';
+export 'input/input.dart';
+export 'load/load.dart';
+export 'pop/prevent_pop.dart';
+export 'skeletons/skeletons.dart';
+export 'transitions/transitions.dart';
