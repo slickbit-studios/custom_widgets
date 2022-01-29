@@ -6,8 +6,14 @@ class BarSkeleton extends StatelessWidget {
   // enter a width of null to expand to maximum
   final double? width;
   final double? height;
+  final Color background;
 
-  const BarSkeleton({Key? key, this.width, this.height = 16}) : super(key: key);
+  const BarSkeleton({
+    Key? key,
+    this.width,
+    this.height = 16,
+    this.background = Colors.white,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +22,7 @@ class BarSkeleton extends StatelessWidget {
         width: width ?? double.infinity,
         height: height,
         decoration: BoxDecoration(
-          color: Colors.black,
+          color: background,
           borderRadius: BorderRadius.circular(8),
         ),
       ),
