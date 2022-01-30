@@ -5,6 +5,7 @@ import 'dimensions.dart';
 
 class DialogDropdownField<T> extends StatelessWidget {
   final bool editable;
+  final double width;
   final T? value;
   final List<DropdownMenuItem<T>> items;
   final String label;
@@ -16,6 +17,7 @@ class DialogDropdownField<T> extends StatelessWidget {
   const DialogDropdownField({
     Key? key,
     required this.editable,
+    this.width = double.maxFinite,
     this.value,
     this.items = const [],
     required this.label,
@@ -35,11 +37,12 @@ class DialogDropdownField<T> extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Row(
+            mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Expanded(flex: 1, child: Text(label)),
-              Expanded(
-                flex: 1,
+              SizedBox(
+                width: width + 24,
                 child: _ToggleEditDropdownField<T>(
                   editable: editable,
                   value: value,
@@ -53,7 +56,7 @@ class DialogDropdownField<T> extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(left: unitSpace),
                   child: Text(unit!),
-                )
+                ),
             ],
           ),
         ),
