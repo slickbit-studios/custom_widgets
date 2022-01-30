@@ -89,7 +89,8 @@ class _DateField extends StatelessWidget {
     );
 
     if (picked != null) {
-      onChanged(DateUtils.dateOnly(picked));
+      var date = DateTime.utc(picked.year, picked.month, picked.day);
+      onChanged(date);
     }
   }
 
