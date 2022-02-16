@@ -5,7 +5,7 @@ import 'shimmer.dart';
 class BarSkeleton extends StatelessWidget {
   // enter a width of null to expand to maximum
   final double? width;
-  final double? height;
+  final double height;
   final Color background;
 
   const BarSkeleton({
@@ -23,7 +23,7 @@ class BarSkeleton extends StatelessWidget {
         height: height,
         decoration: BoxDecoration(
           color: background,
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(height / 2),
         ),
       ),
     );

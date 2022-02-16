@@ -74,6 +74,7 @@ class _SkeletonListState<T> extends State<SkeletonList<T>> {
         } else {
           child = ShimmerProvider(
             child: ListView.builder(
+              physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) => widget.skeletonBuilder(),
               itemCount: widget.skeletonCount,
             ),
