@@ -29,26 +29,29 @@ class LoginButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(4),
           side: BorderSide(color: borderColor ?? background, width: 0.5),
         ),
-        margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+        margin: const EdgeInsets.symmetric(vertical: 4),
         color: background,
-        child: Padding(
-          padding: const EdgeInsets.all(8),
-          child: Row(
-            children: [
-              if (icon != null) icon!,
-              const SizedBox(width: 16),
-              Expanded(
-                child: Text(
-                  text,
-                  textAlign: textAlign,
-                  style: TextStyle(
-                    color: textColor,
-                    fontSize: 14,
-                    fontFamily: 'Roboto',
+        child: SizedBox(
+          height: 40,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12),
+            child: Row(
+              children: [
+                if (icon != null) Center(child: icon!),
+                const SizedBox(width: 16),
+                Expanded(
+                  child: Text(
+                    text,
+                    textAlign: textAlign,
+                    style: TextStyle(
+                      color: textColor,
+                      fontSize: 14,
+                      fontFamily: 'Roboto',
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
@@ -73,7 +76,14 @@ class AppleLoginButton extends StatelessWidget {
       background: Colors.black,
       text: text,
       borderColor: Colors.white,
-      icon: const Icon(Icons.face, color: Colors.white, size: 18),
+      icon: Image(
+        image: AssetImage(
+          'images/signin_button_apple.png',
+          package: 'custom_widgets',
+        ),
+        width: 24,
+        height: 24,
+      ),
       onTap: onTap,
     );
   }
@@ -94,7 +104,14 @@ class FacebookLoginButton extends StatelessWidget {
     return LoginButton(
       background: const Color(0xFF3b5998),
       text: text,
-      icon: const Icon(Icons.face, color: Colors.white, size: 18),
+      icon: Image(
+        image: AssetImage(
+          'images/signin_button_facebook.png',
+          package: 'custom_widgets',
+        ),
+        width: 24,
+        height: 24,
+      ),
       onTap: onTap,
     );
   }
@@ -116,7 +133,14 @@ class GoogleLoginButton extends StatelessWidget {
       background: Colors.white,
       text: text,
       textColor: Colors.black,
-      icon: const Icon(Icons.face, color: Colors.black, size: 18),
+      icon: Image(
+        image: AssetImage(
+          'images/signin_button_google.png',
+          package: 'custom_widgets',
+        ),
+        width: 24,
+        height: 24,
+      ),
       onTap: onTap,
     );
   }
