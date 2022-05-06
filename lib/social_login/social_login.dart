@@ -6,7 +6,7 @@ class LoginButton extends StatelessWidget {
   final Color textColor;
   final Color? borderColor;
   final Widget? icon;
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
   final TextAlign? textAlign;
 
   const LoginButton({
