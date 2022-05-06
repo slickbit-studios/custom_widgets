@@ -62,7 +62,7 @@ class LoginButton extends StatelessWidget {
 
 class AppleLoginButton extends StatelessWidget {
   final String text;
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
 
   const AppleLoginButton({
     Key? key,
@@ -91,7 +91,7 @@ class AppleLoginButton extends StatelessWidget {
 
 class FacebookLoginButton extends StatelessWidget {
   final String text;
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
 
   const FacebookLoginButton({
     Key? key,
@@ -119,7 +119,7 @@ class FacebookLoginButton extends StatelessWidget {
 
 class GoogleLoginButton extends StatelessWidget {
   final String text;
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
 
   const GoogleLoginButton({
     Key? key,
