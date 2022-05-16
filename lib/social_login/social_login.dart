@@ -29,10 +29,10 @@ class LoginButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(4),
           side: BorderSide(color: borderColor ?? background, width: 0.5),
         ),
-        margin: const EdgeInsets.symmetric(vertical: 4),
+        margin: const EdgeInsets.symmetric(vertical: 2),
         color: background,
         child: SizedBox(
-          height: 40,
+          height: 36,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12),
             child: Row(
