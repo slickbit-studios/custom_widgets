@@ -66,7 +66,7 @@ class ListStreamController<T> {
   }
 
   void replace(List<T> objects) {
-    _objects = objects;
+    _objects = List.of(objects, growable: true);
     _broadcast();
   }
 
@@ -124,6 +124,6 @@ class ListStreamController<T> {
   }
 
   void _broadcast() {
-    _controller.add(_organizeList(_objects!));
+    _controller.add(_organizeList(_objects ?? []));
   }
 }
