@@ -19,10 +19,10 @@ class Shimmer extends StatefulWidget {
   const Shimmer({Key? key, required this.child}) : super(key: key);
 
   @override
-  _ShimmerState createState() => _ShimmerState();
+  ShimmerState createState() => ShimmerState();
 }
 
-class _ShimmerState extends State<Shimmer> {
+class ShimmerState extends State<Shimmer> {
   @override
   Widget build(BuildContext context) {
     final shimmer = ShimmerProvider.of(context);
@@ -103,15 +103,15 @@ class ShimmerProvider extends StatefulWidget {
     required this.child,
     this.linearGradient = _defaultShimmerGradient,
   }) : super(key: key);
-  static _ShimmerProviderState? of(BuildContext context) {
-    return context.findAncestorStateOfType<_ShimmerProviderState>();
+  static ShimmerProviderState? of(BuildContext context) {
+    return context.findAncestorStateOfType<ShimmerProviderState>();
   }
 
   @override
-  _ShimmerProviderState createState() => _ShimmerProviderState();
+  ShimmerProviderState createState() => ShimmerProviderState();
 }
 
-class _ShimmerProviderState extends State<ShimmerProvider>
+class ShimmerProviderState extends State<ShimmerProvider>
     with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
 

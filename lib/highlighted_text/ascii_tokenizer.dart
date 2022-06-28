@@ -1,7 +1,7 @@
 // ignore: non_constant_identifier_names
 
 // ignore: non_constant_identifier_names
-final REGEX_FORMATTINGS = RegExp(r'((\[.+?\])#.+?#)|(\*.+?\*)|(\+.+?\+)');
+final _regexFormattings = RegExp(r'((\[.+?\])#.+?#)|(\*.+?\*)|(\+.+?\+)');
 
 // ignore: non_constant_identifier_names
 final REGEX_BOLD = RegExp(r'^\*.+\*$');
@@ -12,7 +12,7 @@ final REGEX_COLOR = RegExp(r'^\[.+\]#.+#$');
 // ignore: non_constant_identifier_names
 final REGEX_BRACES = RegExp(r'^\[.+?\]');
 
-const String URL_PREFIX = 'url:';
+const String urlPrefix = 'url:';
 
 class TextSegment {
   final String text;
@@ -58,7 +58,7 @@ class AsciiTextTokenizer {
     while (position < text.length) {
       // find first token
       RegExpMatch? match =
-          REGEX_FORMATTINGS.firstMatch(text.substring(position));
+          _regexFormattings.firstMatch(text.substring(position));
       if (match == null) {
         // no more results
         result.add(TextSegment(text.substring(position)));
@@ -112,8 +112,8 @@ class AsciiTextTokenizer {
       } else if (REGEX_COLOR.hasMatch(token)) {
         String braces = REGEX_BRACES.firstMatch(token)!.group(0)!;
         String format = braces.substring(1, braces.length - 1);
-        if (format.startsWith(URL_PREFIX)) {
-          url = format.substring(URL_PREFIX.length);
+        if (format.startsWith(urlPrefix)) {
+          url = format.substring(urlPrefix.length);
         } else {
           color = format;
         }

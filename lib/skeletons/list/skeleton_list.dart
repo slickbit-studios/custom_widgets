@@ -26,10 +26,10 @@ class SkeletonList<T> extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _SkeletonListState createState() => _SkeletonListState<T>();
+  SkeletonListState createState() => SkeletonListState<T>();
 }
 
-class _SkeletonListState<T> extends State<SkeletonList<T>> {
+class SkeletonListState<T> extends State<SkeletonList<T>> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<List<T>>(

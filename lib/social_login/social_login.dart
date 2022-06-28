@@ -23,6 +23,7 @@ class LoginButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      onTap: onTap,
       child: Card(
         elevation: 6,
         shape: RoundedRectangleBorder(
@@ -55,7 +56,6 @@ class LoginButton extends StatelessWidget {
           ),
         ),
       ),
-      onTap: onTap,
     );
   }
 }

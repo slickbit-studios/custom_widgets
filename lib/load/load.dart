@@ -61,11 +61,13 @@ class _LoadState extends State<_Load> {
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((_) async {
+      var nav = Navigator.of(context);
+
       try {
         var result = await widget.work();
-        Navigator.of(context).pop(result);
+        nav.pop(result);
       } catch (err) {
-        Navigator.of(context).pop(_ExceptionWrapper(err));
+        nav.pop(_ExceptionWrapper(err));
       }
     });
   }
