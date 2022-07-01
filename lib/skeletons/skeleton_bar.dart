@@ -7,12 +7,14 @@ class BarSkeleton extends StatelessWidget {
   final double? width;
   final double height;
   final Color background;
+  final BorderRadiusGeometry? borderRadius;
 
   const BarSkeleton({
     Key? key,
     this.width,
     this.height = 16,
     this.background = Colors.white,
+    this.borderRadius,
   }) : super(key: key);
 
   @override
@@ -23,7 +25,7 @@ class BarSkeleton extends StatelessWidget {
         height: height,
         decoration: BoxDecoration(
           color: background,
-          borderRadius: BorderRadius.circular(height / 2),
+          borderRadius: borderRadius ?? BorderRadius.circular(height / 2),
         ),
       ),
     );
