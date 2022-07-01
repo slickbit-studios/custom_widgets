@@ -124,6 +124,8 @@ class ListStreamController<T> {
   }
 
   void _broadcast() {
-    _controller.add(_organizeList(_objects ?? []));
+    if (_objects != null) {
+      _controller.add(_organizeList(_objects!));
+    }
   }
 }

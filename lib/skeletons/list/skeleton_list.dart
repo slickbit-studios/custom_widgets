@@ -68,7 +68,7 @@ class SkeletonListState<T> extends State<SkeletonList<T>> {
                   child: SingleChildScrollView(
                 physics: const AlwaysScrollableScrollPhysics(),
                 child: widget.errorView,
-              ))
+              ),),
             ],
           );
         } else {
