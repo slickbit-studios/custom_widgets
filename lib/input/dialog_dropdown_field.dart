@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'dimensions.dart';
 
-class DialogDropdownField<T> extends StatelessWidget {
+class DialogDropdownField<T> extends StatefulWidget {
   final bool editable;
   final double width;
   final T? value;
@@ -28,69 +28,81 @@ class DialogDropdownField<T> extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<DialogDropdownField<T>> createState() => _DialogDropdownFieldState<T>();
+}
+
+class _DialogDropdownFieldState<T> extends State<DialogDropdownField<T>> {
+  final GlobalKey _globalKey = GlobalKey();
+
+  @override
   Widget build(BuildContext context) {
-    return Card(
-      margin: EdgeInsets.zero,
-      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
-      child: SizedBox(
-        height: inputHeight,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Row(
-            mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Expanded(flex: 1, child: Text(label)),
-              SizedBox(
-                width: width + 24,
-                child: _ToggleEditDropdownField<T>(
-                  editable: editable,
-                  value: value,
-                  items: items,
-                  hint: hint,
-                  onChanged: onChanged,
-                  validator: validator,
+    return GestureDetector(
+      onTap: widget.editable ? _openDropdown : null,
+      child: Card(
+        margin: EdgeInsets.zero,
+        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
+        child: SizedBox(
+          height: inputHeight,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Expanded(flex: 1, child: Text(widget.label)),
+                SizedBox(
+                  width: widget.width + 24,
+                  child: DropdownButtonFormField<T>(
+                    key: _globalKey,
+                    decoration: InputDecoration.collapsed(
+                      hintText: widget.hint,
+                    ),
+                    value: widget.value,
+                    onChanged: widget.editable ? widget.onChanged : null,
+                    items: widget.items,
+                    validator: (value) =>
+                        widget.validator?.validate(context, value),
+                  ),
                 ),
-              ),
-              if (unit != null)
-                Padding(
-                  padding: const EdgeInsets.only(left: unitSpace),
-                  child: Text(unit!),
-                ),
-            ],
+                if (widget.unit != null)
+                  Padding(
+                    padding: const EdgeInsets.only(left: unitSpace),
+                    child: Text(widget.unit!),
+                  ),
+              ],
+            ),
           ),
         ),
       ),
     );
   }
-}
 
-class _ToggleEditDropdownField<T> extends StatelessWidget {
-  final bool editable;
-  final T? value;
-  final List<DropdownMenuItem<T>> items;
-  final String? hint;
-  final void Function(T?)? onChanged;
-  final Validator? validator;
+  void _openDropdown() {
+    var actions = _findActionsChild(_globalKey.currentContext);
 
-  const _ToggleEditDropdownField({
-    Key? key,
-    required this.editable,
-    this.value,
-    this.onChanged,
-    required this.items,
-    this.validator,
-    this.hint,
-  }) : super(key: key);
+    if (actions != null) {
+      Actions.invoke(actions, const ActivateIntent());
+    }
+  }
 
-  @override
-  Widget build(BuildContext context) {
-    return DropdownButtonFormField<T>(
-      decoration: InputDecoration.collapsed(hintText: hint),
-      value: value,
-      onChanged: editable ? onChanged : null,
-      items: items,
-      validator: (value) => validator?.validate(context, value),
+  Element? _findActionsChild(BuildContext? context) {
+    Element? result;
+
+    if (context == null) {
+      return null;
+    }
+
+    if (context.widget is Actions) {
+      // return CHILD of Actions Widget
+      context.visitChildElements((element) => result = element);
+      return result;
+    }
+
+    // search
+    context.visitChildElements(
+      (element) => result ??= _findActionsChild(element),
     );
+
+    return result;
   }
 }

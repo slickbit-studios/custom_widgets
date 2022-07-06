@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'dimensions.dart';
 
-class DialogTextField extends StatelessWidget {
+class DialogTextField extends StatefulWidget {
   final bool editable;
   final String label;
   final String? hint;
@@ -11,6 +11,7 @@ class DialogTextField extends StatelessWidget {
   final TextInputType? keyboardType;
   final Validator<String>? validator;
   final String? unit;
+  final bool autofocus;
 
   const DialogTextField({
     Key? key,
@@ -21,38 +22,65 @@ class DialogTextField extends StatelessWidget {
     this.keyboardType,
     this.validator,
     this.unit,
+    this.autofocus = false,
   }) : super(key: key);
 
   @override
+  State<DialogTextField> createState() => _DialogTextFieldState();
+}
+
+class _DialogTextFieldState extends State<DialogTextField> {
+  late FocusNode _focus;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _focus = FocusNode();
+  }
+
+  @override
+  void dispose() {
+    _focus.dispose();
+
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Card(
-      margin: EdgeInsets.zero,
-      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
-      child: SizedBox(
-        height: inputHeight,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(label),
-              SizedBox(width: 12),
-              Expanded(
-                flex: 1,
-                child: _ToggleEditTextField(
-                  editable: editable,
-                  controller: controller,
-                  keyboardType: keyboardType,
-                  validator: validator,
-                  hint: hint,
+    return GestureDetector(
+      onTap: widget.editable ? () => _focus.requestFocus() : null,
+      child: Card(
+        margin: EdgeInsets.zero,
+        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
+        child: SizedBox(
+          height: inputHeight,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(widget.label),
+                SizedBox(width: 12),
+                Expanded(
+                  flex: 1,
+                  child: _ToggleEditTextField(
+                    editable: widget.editable,
+                    controller: widget.controller,
+                    keyboardType: widget.keyboardType,
+                    validator: widget.validator,
+                    hint: widget.hint,
+                    autofocus: widget.autofocus,
+                    focus: _focus,
+                  ),
                 ),
-              ),
-              if (unit != null)
-                Padding(
-                  padding: const EdgeInsets.only(left: unitSpace),
-                  child: Text(unit!),
-                )
-            ],
+                if (widget.unit != null)
+                  Padding(
+                    padding: const EdgeInsets.only(left: unitSpace),
+                    child: Text(widget.unit!),
+                  )
+              ],
+            ),
           ),
         ),
       ),
@@ -66,6 +94,8 @@ class _ToggleEditTextField extends StatelessWidget {
   final TextEditingController controller;
   final TextInputType? keyboardType;
   final Validator? validator;
+  final bool autofocus;
+  final FocusNode focus;
 
   const _ToggleEditTextField({
     Key? key,
@@ -74,6 +104,8 @@ class _ToggleEditTextField extends StatelessWidget {
     required this.controller,
     this.keyboardType,
     this.validator,
+    this.autofocus = false,
+    required this.focus,
   }) : super(key: key);
 
   @override
@@ -86,6 +118,8 @@ class _ToggleEditTextField extends StatelessWidget {
           controller: controller,
           validator: (value) => validator?.validate(context, value),
           keyboardType: keyboardType,
+          autofocus: autofocus,
+          focusNode: focus,
         ),
       );
     } else {

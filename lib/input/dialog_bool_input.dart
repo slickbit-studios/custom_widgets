@@ -18,22 +18,25 @@ class DialogBoolInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      margin: EdgeInsets.zero,
-      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
-      child: InkWell(
-        onTap: () => onChanged(!value),
-        child: SizedBox(
-          height: inputHeight,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(label),
-                Switch(value: value, onChanged: editable ? onChanged : null),
-              ],
+    return GestureDetector(
+      onTap: editable ? () => onChanged(!value) : null,
+      child: Card(
+        margin: EdgeInsets.zero,
+        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
+        child: InkWell(
+          onTap: () => onChanged(!value),
+          child: SizedBox(
+            height: inputHeight,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(label),
+                  Switch(value: value, onChanged: editable ? onChanged : null),
+                ],
+              ),
             ),
           ),
         ),
