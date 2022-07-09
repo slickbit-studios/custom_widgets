@@ -58,10 +58,16 @@ class _DialogDropdownFieldState<T> extends State<DialogDropdownField<T>> {
                       hintText: widget.hint,
                     ),
                     value: widget.value,
-                    onChanged: widget.editable ? widget.onChanged : null,
                     items: widget.items,
+                    onChanged: widget.editable ? widget.onChanged : null,
                     validator: (value) =>
                         widget.validator?.validate(context, value),
+                    icon: Icon(
+                      Icons.arrow_drop_down,
+                      color: widget.editable
+                          ? Colors.black
+                          : Theme.of(context).disabledColor,
+                    ),
                   ),
                 ),
                 if (widget.unit != null)
