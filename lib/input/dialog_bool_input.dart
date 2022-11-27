@@ -36,7 +36,7 @@ class DialogBoolInput extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(label),
-                  if (help != null) SizedBox(width: 8),
+                  if (help != null) SizedBox(width: 4),
                   if (help != null) help!,
                   Expanded(child: SizedBox()),
                   Switch(value: value, onChanged: editable ? onChanged : null),
