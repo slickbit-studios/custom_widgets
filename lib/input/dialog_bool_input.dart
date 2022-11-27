@@ -7,6 +7,7 @@ class DialogBoolInput extends StatelessWidget {
   final String label;
   final bool value;
   final void Function(bool) onChanged;
+  final Widget? help;
 
   const DialogBoolInput({
     Key? key,
@@ -14,6 +15,7 @@ class DialogBoolInput extends StatelessWidget {
     required this.label,
     required this.value,
     required this.onChanged,
+    this.help,
   }) : super(key: key);
 
   @override
@@ -34,6 +36,9 @@ class DialogBoolInput extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(label),
+                  if (help != null) SizedBox(width: 8),
+                  if (help != null) help!,
+                  Expanded(child: SizedBox()),
                   Switch(value: value, onChanged: editable ? onChanged : null),
                 ],
               ),

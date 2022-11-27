@@ -65,10 +65,11 @@ class SkeletonListState<T> extends State<SkeletonList<T>> {
           child = Column(
             children: [
               Expanded(
-                  child: SingleChildScrollView(
-                physics: const AlwaysScrollableScrollPhysics(),
-                child: widget.errorView,
-              ),),
+                child: SingleChildScrollView(
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  child: widget.errorView,
+                ),
+              ),
             ],
           );
         } else {
