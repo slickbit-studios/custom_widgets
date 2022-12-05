@@ -52,21 +52,24 @@ class _DialogDropdownFieldState<T> extends State<DialogDropdownField<T>> {
                 Expanded(flex: 1, child: Text(widget.label)),
                 SizedBox(
                   width: widget.width + 24,
-                  child: DropdownButtonFormField<T>(
-                    key: _globalKey,
-                    decoration: InputDecoration.collapsed(
-                      hintText: widget.hint,
-                    ),
-                    value: widget.value,
-                    items: widget.items,
-                    onChanged: widget.editable ? widget.onChanged : null,
-                    validator: (value) =>
-                        widget.validator?.validate(context, value),
-                    icon: Icon(
-                      Icons.arrow_drop_down,
-                      color: widget.editable
-                          ? Colors.black
-                          : Theme.of(context).disabledColor,
+                  child: Directionality(
+                    textDirection: TextDirection.rtl,
+                    child: DropdownButtonFormField<T>(
+                      key: _globalKey,
+                      decoration: InputDecoration.collapsed(
+                        hintText: widget.hint,
+                      ),
+                      value: widget.value,
+                      items: widget.items,
+                      onChanged: widget.editable ? widget.onChanged : null,
+                      validator: (value) =>
+                          widget.validator?.validate(context, value),
+                      icon: Icon(
+                        Icons.arrow_drop_down,
+                        color: widget.editable
+                            ? Colors.black
+                            : Theme.of(context).disabledColor,
+                      ),
                     ),
                   ),
                 ),
