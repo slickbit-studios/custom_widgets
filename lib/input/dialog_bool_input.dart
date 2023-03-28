@@ -21,7 +21,7 @@ class DialogBoolInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: editable ? () => onChanged(!value) : null,
+      onTap: editable ? _onTap : null,
       child: Card(
         margin: EdgeInsets.zero,
         shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
@@ -47,5 +47,11 @@ class DialogBoolInput extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void _onTap() {
+    if (editable) {
+      onChanged(!value);
+    }
   }
 }
