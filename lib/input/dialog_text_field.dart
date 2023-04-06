@@ -1,5 +1,6 @@
 import 'package:custom_widgets/input/validator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'dimensions.dart';
 
@@ -12,6 +13,7 @@ class DialogTextField extends StatefulWidget {
   final Validator<String>? validator;
   final String? unit;
   final bool autofocus;
+  final List<TextInputFormatter>? inputFormatters;
 
   const DialogTextField({
     Key? key,
@@ -23,6 +25,7 @@ class DialogTextField extends StatefulWidget {
     this.validator,
     this.unit,
     this.autofocus = false,
+    this.inputFormatters,
   }) : super(key: key);
 
   @override
@@ -72,6 +75,7 @@ class _DialogTextFieldState extends State<DialogTextField> {
                     hint: widget.hint,
                     autofocus: widget.autofocus,
                     focus: _focus,
+                    inputFormatters: widget.inputFormatters,
                   ),
                 ),
                 if (widget.unit != null)
@@ -96,6 +100,7 @@ class _ToggleEditTextField extends StatelessWidget {
   final Validator? validator;
   final bool autofocus;
   final FocusNode focus;
+  final List<TextInputFormatter>? inputFormatters;
 
   const _ToggleEditTextField({
     Key? key,
@@ -106,6 +111,7 @@ class _ToggleEditTextField extends StatelessWidget {
     this.validator,
     this.autofocus = false,
     required this.focus,
+    this.inputFormatters,
   }) : super(key: key);
 
   @override
@@ -120,6 +126,7 @@ class _ToggleEditTextField extends StatelessWidget {
           keyboardType: keyboardType,
           autofocus: autofocus,
           focusNode: focus,
+          inputFormatters: inputFormatters,
         ),
       );
     } else {
