@@ -5,12 +5,12 @@ class SlideUpTransition extends StatelessWidget {
   final Animation animation;
   final Offset offset;
 
-  const SlideUpTransition(
-      {Key? key,
-      required this.child,
-      required this.animation,
-      this.offset = const Offset(0, 0.20)})
-      : super(key: key);
+  const SlideUpTransition({
+    Key? key,
+    required this.child,
+    required this.animation,
+    this.offset = const Offset(0, 0.20),
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
