@@ -13,6 +13,7 @@ class DialogTextField extends StatefulWidget {
   final Validator<String>? validator;
   final String? unit;
   final bool autofocus;
+  final void Function(bool hasFocus)? onFocusChanged;
   final List<TextInputFormatter>? inputFormatters;
 
   const DialogTextField({
@@ -25,6 +26,7 @@ class DialogTextField extends StatefulWidget {
     this.validator,
     this.unit,
     this.autofocus = false,
+    this.onFocusChanged,
     this.inputFormatters,
   }) : super(key: key);
 
@@ -40,6 +42,7 @@ class _DialogTextFieldState extends State<DialogTextField> {
     super.initState();
 
     _focus = FocusNode();
+    _focus.addListener(() => widget.onFocusChanged?.call(_focus.hasFocus));
   }
 
   @override
