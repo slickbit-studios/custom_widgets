@@ -12,6 +12,7 @@ class DialogTextField extends StatefulWidget {
   final TextInputType? keyboardType;
   final Validator<String>? validator;
   final String? unit;
+  final Iterable<String>? autofillHints;
   final bool autofocus;
   final void Function(bool hasFocus)? onFocusChanged;
   final List<TextInputFormatter>? inputFormatters;
@@ -25,6 +26,7 @@ class DialogTextField extends StatefulWidget {
     this.keyboardType,
     this.validator,
     this.unit,
+    this.autofillHints,
     this.autofocus = false,
     this.onFocusChanged,
     this.inputFormatters,
@@ -76,6 +78,7 @@ class _DialogTextFieldState extends State<DialogTextField> {
                     keyboardType: widget.keyboardType,
                     validator: widget.validator,
                     hint: widget.hint,
+                    autofillHints: widget.autofillHints,
                     autofocus: widget.autofocus,
                     focus: _focus,
                     inputFormatters: widget.inputFormatters,
@@ -101,6 +104,7 @@ class _ToggleEditTextField extends StatelessWidget {
   final TextEditingController controller;
   final TextInputType? keyboardType;
   final Validator? validator;
+  final Iterable<String>? autofillHints;
   final bool autofocus;
   final FocusNode focus;
   final List<TextInputFormatter>? inputFormatters;
@@ -112,6 +116,7 @@ class _ToggleEditTextField extends StatelessWidget {
     required this.controller,
     this.keyboardType,
     this.validator,
+    this.autofillHints,
     this.autofocus = false,
     required this.focus,
     this.inputFormatters,
@@ -127,6 +132,7 @@ class _ToggleEditTextField extends StatelessWidget {
           controller: controller,
           validator: (value) => validator?.validate(context, value),
           keyboardType: keyboardType,
+          autofillHints: autofillHints,
           autofocus: autofocus,
           focusNode: focus,
           inputFormatters: inputFormatters,
