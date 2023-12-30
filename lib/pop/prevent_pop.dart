@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 class PreventPop extends StatelessWidget {
   final Widget child;
 
-  const PreventPop({Key? key, required this.child}) : super(key: key);
+  const PreventPop({super.key, required this.child});
 
   @override
   Widget build(BuildContext context) {

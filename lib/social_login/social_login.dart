@@ -10,7 +10,7 @@ class LoginButton extends StatelessWidget {
   final TextAlign? textAlign;
 
   const LoginButton({
-    Key? key,
+    super.key,
     required this.background,
     required this.text,
     this.textColor = Colors.white,
@@ -18,7 +18,7 @@ class LoginButton extends StatelessWidget {
     this.icon,
     required this.onTap,
     this.textAlign,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -65,10 +65,10 @@ class AppleLoginButton extends StatelessWidget {
   final VoidCallback? onTap;
 
   const AppleLoginButton({
-    Key? key,
+    super.key,
     required this.text,
     required this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -94,10 +94,10 @@ class FacebookLoginButton extends StatelessWidget {
   final VoidCallback? onTap;
 
   const FacebookLoginButton({
-    Key? key,
+    super.key,
     required this.text,
     required this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -122,10 +122,10 @@ class GoogleLoginButton extends StatelessWidget {
   final VoidCallback? onTap;
 
   const GoogleLoginButton({
-    Key? key,
+    super.key,
     required this.text,
     required this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

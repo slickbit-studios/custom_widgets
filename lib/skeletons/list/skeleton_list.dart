@@ -16,14 +16,14 @@ class SkeletonList<T> extends StatefulWidget {
   final Widget emptyView;
 
   const SkeletonList({
-    Key? key,
+    super.key,
     required this.controller,
     required this.cardBuilder,
     required this.skeletonBuilder,
     this.skeletonCount = 3,
     this.errorView = const SizedBox(),
     this.emptyView = const SizedBox(),
-  }) : super(key: key);
+  });
 
   @override
   SkeletonListState createState() => SkeletonListState<T>();

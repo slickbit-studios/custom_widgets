@@ -49,7 +49,7 @@ class _ExceptionWrapper {
 class _Load extends StatefulWidget {
   final Future Function() work;
 
-  const _Load({Key? key, required this.work}) : super(key: key);
+  const _Load({required this.work});
 
   @override
   State<_Load> createState() => _LoadState();

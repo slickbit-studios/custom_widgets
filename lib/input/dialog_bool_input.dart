@@ -10,13 +10,13 @@ class DialogBoolInput extends StatelessWidget {
   final Widget? help;
 
   const DialogBoolInput({
-    Key? key,
+    super.key,
     this.editable = true,
     required this.label,
     required this.value,
     required this.onChanged,
     this.help,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

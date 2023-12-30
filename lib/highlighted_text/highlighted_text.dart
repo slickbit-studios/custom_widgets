@@ -12,7 +12,7 @@ class HighlightedText extends StatelessWidget {
 
   HighlightedText(
     String text, {
-    Key? key,
+    super.key,
     this.style,
     this.textAlign,
     this.urlColor = Colors.blue,
@@ -21,7 +21,7 @@ class HighlightedText extends StatelessWidget {
       'white': Colors.white,
     },
     this.launchUrl,
-  }) : super(key: key) {
+  }) {
     List<TextSegment> segments = AsciiTextTokenizer().parse(text);
     texts = _getTextSpans(segments);
   }

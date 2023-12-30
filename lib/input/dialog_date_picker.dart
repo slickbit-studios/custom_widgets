@@ -12,7 +12,7 @@ class DialogDatePicker extends StatelessWidget {
   final void Function(DateTime value) onChanged;
 
   DialogDatePicker({
-    Key? key,
+    super.key,
     this.editable = true,
     required this.label,
     DateTime? date,
@@ -21,8 +21,7 @@ class DialogDatePicker extends StatelessWidget {
     DateTime? lastDate,
   })  : date = date ?? DateTime.now(),
         firstDate = firstDate ?? DateTime(2020),
-        lastDate = lastDate ?? DateTime(2199, 12, 31),
-        super(key: key);
+        lastDate = lastDate ?? DateTime(2199, 12, 31);
 
   @override
   Widget build(BuildContext context) {

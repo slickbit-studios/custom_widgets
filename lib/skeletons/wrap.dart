@@ -6,11 +6,11 @@ class NullableWrap extends StatelessWidget {
   final Widget Function() isNull;
 
   const NullableWrap({
-    Key? key,
+    super.key,
     required this.value,
     required this.nonNull,
     required this.isNull,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

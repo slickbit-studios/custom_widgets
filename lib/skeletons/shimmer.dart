@@ -16,7 +16,7 @@ class _SlideGradientTransform extends GradientTransform {
 class Shimmer extends StatefulWidget {
   final Widget child;
 
-  const Shimmer({Key? key, required this.child}) : super(key: key);
+  const Shimmer({super.key, required this.child});
 
   @override
   ShimmerState createState() => ShimmerState();
@@ -99,10 +99,10 @@ class ShimmerProvider extends StatefulWidget {
   final Widget child;
 
   const ShimmerProvider({
-    Key? key,
+    super.key,
     required this.child,
     this.linearGradient = _defaultShimmerGradient,
-  }) : super(key: key);
+  });
   static ShimmerProviderState? of(BuildContext context) {
     return context.findAncestorStateOfType<ShimmerProviderState>();
   }

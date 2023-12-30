@@ -15,7 +15,7 @@ class DialogDropdownField<T> extends StatefulWidget {
   final Validator<T>? validator;
 
   const DialogDropdownField({
-    Key? key,
+    super.key,
     required this.editable,
     this.width = double.maxFinite,
     this.value,
@@ -25,7 +25,7 @@ class DialogDropdownField<T> extends StatefulWidget {
     this.unit,
     this.onChanged,
     this.validator,
-  }) : super(key: key);
+  });
 
   @override
   State<DialogDropdownField<T>> createState() => _DialogDropdownFieldState<T>();

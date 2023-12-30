@@ -18,7 +18,7 @@ class DialogTextField extends StatefulWidget {
   final List<TextInputFormatter>? inputFormatters;
 
   const DialogTextField({
-    Key? key,
+    super.key,
     this.editable = true,
     required this.label,
     this.hint,
@@ -30,7 +30,7 @@ class DialogTextField extends StatefulWidget {
     this.autofocus = false,
     this.onFocusChanged,
     this.inputFormatters,
-  }) : super(key: key);
+  });
 
   @override
   State<DialogTextField> createState() => _DialogTextFieldState();
@@ -110,7 +110,6 @@ class _ToggleEditTextField extends StatelessWidget {
   final List<TextInputFormatter>? inputFormatters;
 
   const _ToggleEditTextField({
-    Key? key,
     required this.editable,
     this.hint,
     required this.controller,
@@ -120,7 +119,7 @@ class _ToggleEditTextField extends StatelessWidget {
     this.autofocus = false,
     required this.focus,
     this.inputFormatters,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

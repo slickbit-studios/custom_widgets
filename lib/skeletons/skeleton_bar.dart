@@ -10,12 +10,12 @@ class BarSkeleton extends StatelessWidget {
   final BorderRadiusGeometry? borderRadius;
 
   const BarSkeleton({
-    Key? key,
+    super.key,
     this.width,
     this.height = 16,
     this.background = Colors.white,
     this.borderRadius,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
